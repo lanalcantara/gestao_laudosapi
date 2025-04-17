@@ -23,7 +23,7 @@ export function Sidebar({ isMobile }: SidebarProps) {
             <SheetClose asChild>
               <Link href="/" className="flex items-center gap-2 font-semibold">
                 <Shield className="h-6 w-6" />
-                <span>Sistema Pericial</span>
+                <span>OdontoForense</span>
               </Link>
             </SheetClose>
           ) : (
