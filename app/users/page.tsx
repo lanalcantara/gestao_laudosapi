@@ -1,12 +1,46 @@
+"use client"
+
+import { useState } from "react"
+import Link from "next/link"
+import { Edit, Plus, Trash2, UserCog } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Edit, Plus, Trash2, UserCog } from "lucide-react"
-import Link from "next/link"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { toast } from "@/components/ui/use-toast"
 
 export default function UsersPage() {
+  const [open, setOpen] = useState(false)
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    role: "",
+  })
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!formData.name || !formData.email || !formData.role) {
+      toast({
+        title: "Erro",
+        description: "Preencha todos os campos antes de salvar.",
+        variant: "destructive",
+      })
+      return
+    }
+
+    toast({
+      title: "Sucesso",
+      description: "Usuário adicionado com sucesso!",
+    })
+
+    setFormData({ name: "", email: "", role: "" })
+    setOpen(false)
+  }
+
   return (
     <div className="container mx-auto py-10">
       <div className="flex justify-between items-center mb-6">
@@ -14,11 +48,48 @@ export default function UsersPage() {
           <h1 className="text-3xl font-bold tracking-tight">Gestão de Usuários</h1>
           <p className="text-muted-foreground">Gerencie os usuários do sistema e suas permissões</p>
         </div>
-        <Button asChild>
-          <Link href="/users/new">
-            <Plus className="mr-2 h-4 w-4" /> Novo Usuário
-          </Link>
-        </Button>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button>
+              <Plus className="mr-2 h-4 w-4" /> Novo Usuário
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Adicionar Novo Usuário</DialogTitle>
+            </DialogHeader>
+            <form onSubmit={handleSubmit} className="space-y-4 pt-4">
+              <Input
+                placeholder="Nome completo"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              />
+              <Input
+                type="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              />
+              <Select
+                value={formData.role}
+                onValueChange={(value) => setFormData({ ...formData, role: value })}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Perfil" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Administrador">Administrador</SelectItem>
+                  <SelectItem value="Perito">Perito</SelectItem>
+                  <SelectItem value="Gerente">Gerente</SelectItem>
+                  <SelectItem value="Assistente">Assistente</SelectItem>
+                </SelectContent>
+              </Select>
+              <div className="flex justify-end">
+                <Button type="submit">Salvar</Button>
+              </div>
+            </form>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <Card className="mb-8">
@@ -69,7 +140,11 @@ export default function UsersPage() {
                   <TableCell>{user.role}</TableCell>
                   <TableCell>
                     <span
-                      className={`px-2 py-1 rounded-full text-xs ${user.status === "Ativo" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                      className={`px-2 py-1 rounded-full text-xs ${
+                        user.status === "Ativo"
+                          ? "bg-green-100 text-green-800"
+                          : "bg-red-100 text-red-800"
+                      }`}
                     >
                       {user.status}
                     </span>
@@ -138,4 +213,3 @@ const users = [
     status: "Ativo",
   },
 ]
-
