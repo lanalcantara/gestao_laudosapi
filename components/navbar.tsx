@@ -94,12 +94,6 @@ export function Navbar() {
                     <span>Login</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/register" className="cursor-pointer">
-                    <UserPlus className="mr-2 h-4 w-4" />
-                    <span>Cadastro</span>
-                  </Link>
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}

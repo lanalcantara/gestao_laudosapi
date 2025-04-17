@@ -17,7 +17,7 @@ export default function ReportsPage() {
         </div>
         <Button asChild>
           <Link href="/reports/new">
-            <Plus className="mr-2 h-4 w-4" /> Novo Laudo
+            <Plus className="mr-2 h-4 w-4" /> Relatório de evidências
           </Link>
         </Button>
       </div>

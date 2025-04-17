@@ -238,7 +238,7 @@ export default function CaseDetailsPage({ params }: { params: { id: string } }) 
                 <div className="flex justify-center">
                   <Button variant="outline" asChild>
                     <Link href={`/reports/new?case=${caseData.id}`}>
-                      <FileText className="mr-2 h-4 w-4" /> Gerar Novo Laudo
+                      <FileText className="mr-2 h-4 w-4" /> Gerar Relatório de evidências
                     </Link>
                   </Button>
                 </div>

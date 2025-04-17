@@ -115,6 +115,20 @@ export default function EvidenceUploadPage() {
                 rows={5}
               />
             </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="category">Local de retirada</Label>
+              <Select>
+                <SelectTrigger id="category">
+                  <SelectValue placeholder="Selecione um local de retirada" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="agencia">Agência</SelectItem>
+                  <SelectItem value="laboratorio">Laboratório</SelectItem>
+                  <SelectItem value="delegacia">Delegacia</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </CardContent>
           <CardFooter>
             <Button className="w-full">Salvar Evidência</Button>

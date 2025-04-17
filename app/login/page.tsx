@@ -37,12 +37,6 @@ export default function LoginPage() {
           <Button className="w-full" asChild>
             <Link href="/">Entrar</Link>
           </Button>
-          <div className="text-center text-sm">
-            Não tem uma conta?{" "}
-            <Link href="/register" className="text-primary underline-offset-4 hover:underline">
-              Cadastre-se
-            </Link>
-          </div>
         </CardFooter>
       </Card>
     </div>
