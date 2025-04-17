@@ -37,7 +37,7 @@ export function Navbar() {
 
         <div className="lg:hidden flex-1 flex justify-center">
           <Link href="/" className="flex items-center gap-2 font-semibold">
-            <span>Sistema Pericial</span>
+            <span>OdontoForense</span>
           </Link>
         </div>
 

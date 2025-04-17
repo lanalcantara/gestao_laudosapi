@@ -29,7 +29,7 @@ export function Sidebar({ isMobile }: SidebarProps) {
           ) : (
             <Link href="/" className="flex items-center gap-2 font-semibold">
               <Shield className="h-6 w-6" />
-              <span>Sistema Pericial</span>
+              <span>OdontoForense</span>
             </Link>
           )}
         </div>
